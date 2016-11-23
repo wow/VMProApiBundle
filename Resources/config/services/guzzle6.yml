@@ -1,0 +1,25 @@
+services:
+    # Guzzle 6 specific API client factory instance
+    vmpro_api.api_client_factory:
+        class: MovingImage\Client\VMPro\Factory\Guzzle6ApiClientFactory
+
+    # Guzzle 6 specific token middleware instance
+    vmpro_api.token_middleware:
+        class: MovingImage\Client\VMPro\Middleware\TokenMiddleware
+        arguments:
+            - "@vmpro_api.token_manager"
+
+    # Re-usable Guzzle 6 HTTP client instance without
+    # authentication handlers attached
+    vmpro_api.unauthenticated_guzzle_client:
+        class: GuzzleHttp\Client
+        arguments: [base_uri: %vm_pro_api_base_url%]
+
+    # Re-usable Guzzle 6 HTTP client instance with
+    # all appropriate authentication handlers attached
+    vmpro_api.authenticated_guzzle_client:
+        class: GuzzleHttp\Client
+        factory: ["@vmpro_api.api_client_factory", createHttpClient]
+        arguments:
+            - %vm_pro_api_base_url%
+            - ["@vmpro_api.token_middleware"]

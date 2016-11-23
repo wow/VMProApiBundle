@@ -1,0 +1,30 @@
+{
+    "name": "movingimage/vmpro-api-bundle",
+    "description": "Official Symfony bundle for interacting with the MovingIMAGE Video Manager Pro public API",
+    "type": "bundle",
+    "license": "BSD 3-clause",
+    "authors": [
+        {
+            "name": "Ruben Knol",
+            "email": "ruben.knol@movingimage.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^5.5 || ^7.0",
+        "symfony/framework-bundle": "^2.7 || ^3.0",
+        "guzzlehttp/guzzle": "^5.0 || ^6.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^1.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "MovingImage\\Bundle\\VMProApiBundle\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+}
