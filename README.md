@@ -1,5 +1,7 @@
 # Video Manager Pro API Bundle
 
+[![Build Status](https://travis-ci.org/MovingImage24/VMProApiBundle.svg?branch=master)](https://travis-ci.org/MovingImage24/VMProApiBundle)
+
 Official Symfony bundle for interacting with the Video Manager Pro API.
 
 ## Installation
