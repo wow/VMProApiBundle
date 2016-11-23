@@ -13,11 +13,6 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
     /**
-     * @const Which API client class to use by default. Non-scalar for PHP 5.5 support.
-     */
-    const DEFAULT_API_CLIENT_CLASS = 'MovingImage\Client\VMPro\ApiClient';
-
-    /**
      * @const Which API base URL to use by default.
      */
     const DEFAULT_API_BASE_URL = 'https://api.video-cdn.net/v1/vms/';
@@ -41,9 +36,10 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue(0)
                 ->end()
                 ->arrayNode('credentials')
+                    ->isRequired()
                     ->children()
-                        ->scalarNode('username')->end()
-                        ->scalarNode('password')->end()
+                        ->scalarNode('username')->isRequired()->end()
+                        ->scalarNode('password')->isRequired()->end()
                     ->end()
                 ->end()
             ->end()
