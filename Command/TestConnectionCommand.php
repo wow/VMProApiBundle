@@ -39,10 +39,14 @@ class TestConnectionCommand extends ContainerAwareCommand
         try {
             $client->getChannels($vmId)->getName();
             $output->writeln('<fg=green;options=bold> ✔ Connecting with the API succeeded.</>');
+            $output->writeln('');
+
+            return 0;
         } catch (\Exception $e) {
             $output->writeln('<bg=red;fg=white;options=bold> ✘ Connecting with the API failed..</>');
-        }
+            $output->writeln('');
 
-        $output->writeln('');
+            return 1;
+        }
     }
 }
