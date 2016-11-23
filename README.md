@@ -1,6 +1,6 @@
 # Video Manager Pro API Bundle
 
-[![Build Status](https://travis-ci.org/MovingImage24/VMProApiBundle.svg?branch=master)](https://travis-ci.org/MovingImage24/VMProApiBundle) [![Code Coverage](https://scrutinizer-ci.com/g/MovingImage24/VMProApiBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/MovingImage24/VMProApiBundle/?branch=master)
+[![Build Status](https://travis-ci.org/MovingImage24/VMProApiBundle.svg?branch=master)](https://travis-ci.org/MovingImage24/VMProApiBundle) [![Code Coverage](https://scrutinizer-ci.com/g/MovingImage24/VMProApiBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/MovingImage24/VMProApiBundle/?branch=master) [![License](https://poser.pugx.org/movingimage/vmpro-api-bundle/license)](https://packagist.org/packages/movingimage/vmpro-api-bundle) [![Latest Unstable Version](https://poser.pugx.org/movingimage/vmpro-api-bundle/v/unstable)](https://packagist.org/packages/movingimage/vmpro-api-bundle) [![Latest Stable Version](https://poser.pugx.org/movingimage/vmpro-api-bundle/v/stable)](https://packagist.org/packages/movingimage/vmpro-api-bundle)
 
 Official Symfony bundle for interacting with the Video Manager Pro API.
 
