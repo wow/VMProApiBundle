@@ -24,6 +24,6 @@ install:
   - if [ "$GUZZLE_VERSION" != "" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi;
 
 script:
-  - php vendor/bin/php-cs-fixer fix --dry-run --diff
-  - ./vendor/bin/phpunit
+  - if [ "$GUZZLE_VERSION" = "^5.0" ]; then php vendor/bin/php-cs-fixer fix --dry-run --diff; fi; 
+  - ./vendor/bin/phpunit --coverage-clover=./coverage.clover
   - if [ "$GUZZLE_VERSION" != "" ]; then php ocular.phar code-coverage:upload --format=php-clover ./coverage.clover; fi;
