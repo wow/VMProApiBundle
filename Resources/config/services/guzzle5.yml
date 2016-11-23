@@ -1,0 +1,25 @@
+services:
+    # Guzzle 5 specific API client factory instance
+    vmpro_api.api_client_factory:
+        class: MovingImage\Client\VMPro\Factory\Guzzle5ApiClientFactory
+
+    # Guzzle 5 specific token subscriber instance
+    vmpro_api.token_subscriber:
+        class: MovingImage\Client\VMPro\Subscriber\TokenSubscriber
+        arguments:
+            - "@vmpro_api.token_manager"
+
+    # Re-usable Guzzle 5 HTTP client instance without
+    # authentication subscribers attached
+    vmpro_api.unauthenticated_guzzle_client:
+        class: GuzzleHttp\Client
+        arguments: [base_url: %vm_pro_api_base_url%]
+
+    # Re-usable Guzzle 5 HTTP client instance with
+    # all appropriate authentication subscribers attached
+    vmpro_api.authenticated_guzzle_client:
+        class: GuzzleHttp\Client
+        factory: ["@vmpro_api.api_client_factory", createHttpClient]
+        arguments:
+            - %vm_pro_api_base_url%
+            - ["@vmpro_api.token_subscriber"]
