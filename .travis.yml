@@ -18,8 +18,8 @@ matrix:
     - php: 7.0
 
 install:
-  - composer install
   - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}"; fi;
+  - composer install
   - if [ "$GUZZLE_VERSION" != "" ]; then composer require "guzzlehttp/guzzle:${GUZZLE_VERSION}"; fi;
   - if [ "$GUZZLE_VERSION" != "" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi;
 
