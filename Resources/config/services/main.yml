@@ -32,3 +32,10 @@ services:
         arguments:
             - "@vmpro_api.authenticated_guzzle_client"
             - "@vmpro_api.serializer"
+
+    # Upload Service for uploading videos
+    vmpro_api.upload_service:
+        class: MovingImage\Bundle\VMProApiBundle\Service\UploadService
+        arguments:
+            - "@vmpro_api.client"
+            - %vm_pro_api_default_vm_id%
