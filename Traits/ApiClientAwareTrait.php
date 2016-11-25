@@ -9,7 +9,7 @@ use MovingImage\Client\VMPro\Interfaces\ApiClientInterface;
  *
  * @author Ruben Knol <ruben.knol@movingimage.com>
  */
-trait ApiClientWareTrait
+trait ApiClientAwareTrait
 {
     /**
      * @var ApiClientInterface
