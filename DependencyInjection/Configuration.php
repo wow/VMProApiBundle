@@ -32,7 +32,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('base_url')
                     ->defaultValue(self::DEFAULT_API_BASE_URL)
                 ->end()
-                ->integerNode('default_vm_id')
+                ->scalarNode('default_vm_id')
                     ->defaultValue(0)
                 ->end()
                 ->arrayNode('credentials')
