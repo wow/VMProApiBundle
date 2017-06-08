@@ -27,7 +27,7 @@ services:
     # Video Manager Pro API client - dynamically instantiated
     # depending on which GuzzleHttp library is present in the project
     vmpro_api.client:
-        class: MovingImage\Client\VMPro\Interface\ClientInterface
+        class: MovingImage\Client\VMPro\Interface\ApiClientInterface
         factory: ["@vmpro_api.api_client_factory", create]
         arguments:
             - "@vmpro_api.authenticated_guzzle_client"
