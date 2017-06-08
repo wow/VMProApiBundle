@@ -3,8 +3,8 @@ services:
     vmpro_api.credentials:
         class: MovingImage\Client\VMPro\Entity\ApiCredentials
         arguments:
-            - %vm_pro_api_credentials_username%
-            - %vm_pro_api_credentials_password%
+            - "%vm_pro_api_credentials_username%"
+            - "%vm_pro_api_credentials_password%"
 
     # JWT Token extractor instance
     vmpro_api.token_extractor:
