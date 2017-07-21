@@ -42,6 +42,12 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('password')->isRequired()->end()
                     ->end()
                 ->end()
+                ->arrayNode('rating_meta_data_fields')
+                    ->children()
+                        ->scalarNode('average')->isRequired()->end()
+                        ->scalarNode('count')->isRequired()->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 

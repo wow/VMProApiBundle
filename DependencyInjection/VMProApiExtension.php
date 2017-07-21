@@ -68,6 +68,12 @@ class VMProApiExtension extends ConfigurableExtension
         // Always load the services that will always be the same
         $loader->load('services/main.yml');
 
+        // only load ratings service if the meta data fields are configured
+        if (array_key_exists('vm_pro_api_rating_meta_data_fields_average', $parameters)
+            && array_key_exists('vm_pro_api_rating_meta_data_fields_count', $parameters)) {
+            $loader->load('services/ratings.yml');
+        }
+
         // Dynamically load service configurations that are specific
         // to which Guzzle version is installed
         if (version_compare(ClientInterface::VERSION, '6.0', '>=')) {
