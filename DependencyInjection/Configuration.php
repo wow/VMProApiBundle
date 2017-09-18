@@ -57,6 +57,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('cache_ttl')
                     ->defaultValue(null)
                 ->end()
+                ->scalarNode('cache_bypass_argument')
+                    ->defaultValue(null)
+                ->end()
             ->end()
         ;
 
