@@ -29,7 +29,7 @@ services:
     vmpro_api.bypass_cache_listener:
         class: MovingImage\Bundle\VMProApiBundle\EventListener\BypassCacheListener
         arguments:
-            - '@service_container'
+            - '@vmpro_api.client'
             - '%vm_pro_api_cache_bypass_argument%'
         tags:
             - { name: kernel.event_subscriber }

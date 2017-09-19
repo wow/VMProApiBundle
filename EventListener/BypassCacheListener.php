@@ -3,8 +3,8 @@
 namespace MovingImage\Bundle\VMProApiBundle\EventListener;
 
 use MovingImage\Bundle\VMProApiBundle\Decorator\BlackholeCacheItemPoolDecorator;
+use MovingImage\Client\VMPro\ApiClient;
 use MovingImage\Client\VMPro\ApiClient\AbstractApiClient;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -19,9 +19,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class BypassCacheListener implements EventSubscriberInterface
 {
     /**
-     * @var ContainerInterface
+     * @var ApiClient
      */
-    private $container;
+    private $apiClient;
 
     /**
      * @var string|null
@@ -29,12 +29,12 @@ class BypassCacheListener implements EventSubscriberInterface
     private $cacheBypassArgument;
 
     /**
-     * @param ContainerInterface $container
-     * @param string             $cacheBypassArgument
+     * @param ApiClient $apiClient
+     * @param string    $cacheBypassArgument
      */
-    public function __construct(ContainerInterface $container, $cacheBypassArgument = null)
+    public function __construct(ApiClient $apiClient, $cacheBypassArgument = null)
     {
-        $this->container = $container;
+        $this->apiClient = $apiClient;
         $this->cacheBypassArgument = $cacheBypassArgument;
     }
 
@@ -43,17 +43,15 @@ class BypassCacheListener implements EventSubscriberInterface
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if (!$this->cacheBypassArgument) {
+        if (is_null($this->cacheBypassArgument)) {
             return;
         }
 
         $request = $event->getRequest();
-
-        if ($request->get($this->cacheBypassArgument)) {
+        if ($request->get($this->cacheBypassArgument) || $request->cookies->get($this->cacheBypassArgument)) {
             /** @var AbstractApiClient $apiClient */
-            $apiClient = $this->container->get('vmpro_api.client');
-            $cachePool = new BlackholeCacheItemPoolDecorator($apiClient->getCacheItemPool());
-            $apiClient->setCacheItemPool($cachePool);
+            $cachePool = new BlackholeCacheItemPoolDecorator($this->apiClient->getCacheItemPool());
+            $this->apiClient->setCacheItemPool($cachePool);
         }
     }
 
