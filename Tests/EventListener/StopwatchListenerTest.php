@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\Stopwatch\Stopwatch as SymfonyStopwatch;
 
 class StopwatchListenerTest extends TestCase
 {
@@ -19,7 +20,7 @@ class StopwatchListenerTest extends TestCase
      */
     public function testOnKernelResponse($enabled)
     {
-        $stopwatch = new Stopwatch();
+        $stopwatch = new Stopwatch(new SymfonyStopwatch());
         $stopwatch->start('test');
         $stopwatch->stop('test');
         $listener = new StopwatchListener($stopwatch, $enabled);

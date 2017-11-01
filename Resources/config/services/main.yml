@@ -27,6 +27,8 @@ services:
     # Stopwatch for measuring response times of API calls
     vmpro_api.stopwatch:
         class: MovingImage\Bundle\VMProApiBundle\Service\Stopwatch
+        arguments:
+            - '@debug.stopwatch'
 
     # Event listener that will bypass cache for requests that have the pre-defined request argument
     # The name of this request argument is configured using `cache_bypass_argument` option

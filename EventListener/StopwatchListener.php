@@ -43,12 +43,11 @@ class StopwatchListener implements EventSubscriberInterface
         }
 
         $totalDuration = 0;
-        foreach ($this->stopwatch->getSections() as $section) {
-            foreach ($section->getEvents() as $name => $stopwatchEvent) {
-                $duration = $stopwatchEvent->getDuration();
-                $totalDuration += $duration;
-                $this->setHeader($event->getResponse(), $name, $duration);
-            }
+
+        foreach ($this->stopwatch->getEvents() as $name => $stopwatchEvent) {
+            $duration = $stopwatchEvent->getDuration();
+            $totalDuration += $duration;
+            $this->setHeader($event->getResponse(), $name, $duration);
         }
 
         $this->setHeader($event->getResponse(), 'total', $totalDuration);
