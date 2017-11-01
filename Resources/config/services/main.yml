@@ -43,5 +43,6 @@ services:
         class: MovingImage\Bundle\VMProApiBundle\EventListener\StopwatchListener
         arguments:
             - '@vmpro_api.stopwatch'
+            - '%vm_pro_api_enable_stopwatch%'
         tags:
             - { name: kernel.event_subscriber }

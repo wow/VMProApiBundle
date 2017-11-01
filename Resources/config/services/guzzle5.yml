@@ -32,7 +32,3 @@ services:
         arguments:
             - "@vmpro_api.authenticated_guzzle_client"
             - "@vmpro_api.serializer"
-            - null
-            - null
-            - null
-            - "@vmpro_api.stopwatch"

@@ -19,11 +19,18 @@ class StopwatchListener implements EventSubscriberInterface
     private $stopwatch;
 
     /**
-     * @param Stopwatch $stopwatch
+     * @var bool
      */
-    public function __construct(Stopwatch $stopwatch)
+    private $enabled;
+
+    /**
+     * @param Stopwatch $stopwatch
+     * @param bool      $enabled   (if false, this listener will be effectively bypassed)
+     */
+    public function __construct(Stopwatch $stopwatch, $enabled)
     {
         $this->stopwatch = $stopwatch;
+        $this->enabled = $enabled;
     }
 
     /**
@@ -31,6 +38,10 @@ class StopwatchListener implements EventSubscriberInterface
      */
     public function onKernelResponse(FilterResponseEvent $event)
     {
+        if (!$this->enabled) {
+            return;
+        }
+
         $totalDuration = 0;
         foreach ($this->stopwatch->getSections() as $section) {
             foreach ($section->getEvents() as $name => $stopwatchEvent) {
