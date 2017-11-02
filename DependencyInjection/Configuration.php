@@ -60,6 +60,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('cache_bypass_argument')
                     ->defaultValue(null)
                 ->end()
+                ->booleanNode('enable_stopwatch')
+                    ->defaultValue(false)
+                ->end()
             ->end()
         ;
 
