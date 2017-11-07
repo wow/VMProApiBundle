@@ -72,6 +72,8 @@ class StopwatchListener implements EventSubscriberInterface
      */
     private function setHeader(Response $response, $stage, $duration)
     {
+        // disallow non-alphanumeric characters in the header
+        $stage = preg_replace('/[^\d\w]/', '', $stage);
         $headerName = 'X-API-RESPONSE-'.strtoupper($stage);
         $response->headers->set($headerName, $duration);
     }
